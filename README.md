@@ -23,3 +23,6 @@ max : 25(추정)
 미니멈 속도 = 1000 / 1
 
 1000 선정 기준 : 예제 코드에 1000으로 기본 세팅 되어있고, 매우 느려서 모터에 부하 안 가는 속도.
+
+
+https://docs.google.com/document/d/1bkvPQNkkFRb2QJgUPw2rLMsRN7aS1cx5Md6RTBFhhAI/edit
