@@ -10,8 +10,8 @@
         <button @click="changeSpeed(-1)">&#9664; Decrease Speed</button>
         <button @click="changeSpeed(1)">&#9654; Increase Speed</button>
         <button @click="stopMotor">Stop Motor</button>
-        <button @click="moveMotor('right')">Move Right</button>
         <button @click="moveMotor('left')">Move Left</button>
+        <button @click="moveMotor('right')">Move Right</button>
       </div>
     </div>
   </div>
@@ -87,7 +87,36 @@ export default {
         console.error('Error moving motor:', error);
         this.status = `Error moving motor: ${error.message}`;
       }
+    },
+    handleKeydown(event) {
+      switch (event.key) {
+        case 'ArrowUp':
+          this.changeSpeed(1);
+          break;
+        case 'ArrowDown':
+          this.changeSpeed(-1);
+          break;
+        case ' ':
+          this.stopMotor();
+          break;
+        case 'ArrowRight':
+          this.moveMotor('right');
+          break;
+        case 'ArrowLeft':
+          this.moveMotor('left');
+          break;
+        default:
+          break;
+      }
     }
+  },
+  mounted() {
+    // Add keydown event listener when component is mounted
+    window.addEventListener('keydown', this.handleKeydown);
+  },
+  beforeUnmount() {
+    // Remove keydown event listener when component is destroyed
+    window.removeEventListener('keydown', this.handleKeydown);
   }
 }
 </script>
