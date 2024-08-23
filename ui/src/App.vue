@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <h1>Stepper Motor Control</h1>
+    <h1>스테퍼 모터 원격 제어</h1>
     <div class="control-panel">
       <!-- Motor Control -->
       <div class="motor-control">
-        <h2>Motor Control</h2>
-        <p>Status: {{ status }}</p>
-        <p>Speed: {{ speed }} (Use arrow buttons to adjust)</p>
-        <button @click="changeSpeed(-1)">&#9664; Decrease Speed</button>
-        <button @click="changeSpeed(1)">&#9654; Increase Speed</button>
-        <button @click="stopMotor">Stop Motor</button>
-        <button @click="moveMotor('left')">Move Left</button>
-        <button @click="moveMotor('right')">Move Right</button>
+        <h2>모터 제어</h2>
+        <p>상태: {{ status }}</p>
+        <p>속도: {{ speed }} (클릭하여 속도 조절)</p>
+        <button @click="changeSpeed(-1)">&#9650; 감속</button>
+        <button @click="changeSpeed(1)">&#9660; 가속</button>
+        <button @click="stopMotor">&#9208; 모터 정지</button>
+        <button @click="moveMotor('left')">&#9664; 좌로 이동</button>
+        <button @click="moveMotor('right')">&#9654; 우로 이동</button>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
   name: 'App',
   data() {
     return {
-      status: 'Motor stopped',
+      status: '모터 정지',
       speed: 0 // Initial speed
     }
   },
@@ -44,7 +44,7 @@ export default {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        this.status = `Speed set to ${this.speed}`;
+        this.status = `속도 세팅 : ${this.speed}`;
         console.log(this.speed);
       } catch (error) {
         console.error('Error setting speed:', error);
@@ -63,7 +63,7 @@ export default {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        this.status = 'Motor stopped';
+        this.status = '모터 정지';
         this.speed = 0; // Reset speed to 0 when stopping
       } catch (error) {
         console.error('Error stopping motor:', error);
@@ -82,7 +82,7 @@ export default {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        this.status = `Motor moving ${direction}`;
+        this.status = `${direction}로 이동중`;
       } catch (error) {
         console.error('Error moving motor:', error);
         this.status = `Error moving motor: ${error.message}`;
