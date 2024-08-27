@@ -64,26 +64,23 @@ void loop() {
     if (command == "s") {
       motorRunning = false;
       digitalWrite(STEP_ENA_PIN, HIGH); // 모터 정지
-      Serial.println("Motor stopped");
     } 
     else if (command == "d") {
       motorRunning = true;
       motorDirection = HIGH; // 모터 우향 세팅
       digitalWrite(STEP_ENA_PIN, LOW); // 모터 활성화
-      Serial.println("Motor moving right");
     } 
     else if (command == "a") {
       motorRunning = true;
       motorDirection = LOW; // 모터 좌향 세팅
       digitalWrite(STEP_ENA_PIN, LOW); // 모터 활성화
-      Serial.println("Motor moving left");
     }
+    /*
     else if (command == "p") {
       // 현재 펄스(위치) 시리얼모니터에 표시
-      Serial.print("Current Distance: ");
       Serial.println(motorPosition);
-
     }
+    */
   }
 
   if (motorRunning) {
@@ -112,7 +109,6 @@ void loop() {
 
   if (currentMillis - lastPositionSendTime >= positionSendInterval) {
     lastPositionSendTime = currentMillis;
-    Serial.print("Motor Position: ");
     Serial.println(motorPosition);
   }
 }
