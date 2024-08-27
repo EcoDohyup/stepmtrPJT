@@ -2,6 +2,26 @@
 
 
 
+## 리니어 스테이지 모터 연구
+
+### 길이 정보
+실제 이동 가능한 레일 길이 = 1
+
+### 수정사항
+#### 입력값
+현재는 임의의 속도값을 주나, 길이 파악이 가능한 값으로 입력해야 한다.
+중요한 것은 길이의 값이 측정되어 기록에 남는 것이기 때문에...
+
+로테이션 누적에 기반하여 길이 도출. 이래야 반대 방향으로 가도 길이가 잘 나온다.
+
+속도는 임의 설정. 
+
+
+#### Display 값
+길이가 나와야 한다. 길이는 무조건 sbc로 전달된다. 
+
+
+
 IP Address: 192.168.0.94
 ESP32 MAC Address: A0:DD:6C:10:64:5C
 
@@ -27,3 +47,7 @@ So if we do not need a manual speed control function, we can set the initial/sto
 
 
 https://docs.google.com/document/d/1bkvPQNkkFRb2QJgUPw2rLMsRN7aS1cx5Md6RTBFhhAI/edit
+
+
+
+###
