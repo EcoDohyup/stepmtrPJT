@@ -76,11 +76,15 @@ Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter
 1펄스당 0.45도 돌린다. 
 
 
+751 * 0.45
+
 
 #### Troubleshoot
 우분투 esp32 연결
 https://www.bordergate.co.uk/configuring-an-esp32-in-ubuntu-22-04/
 여기서 screen 명령까지 수행한다.
+
+아니면 sudo chmod a+rw /dev/ttyUSB*
 
 Python 다 작성했는데, [Errno 16] Device or resource busy: '/dev/ttyUSB0' 뜬다?
 
@@ -89,3 +93,18 @@ sudo lsof /dev/ttyUSB0
 sudo kill <PID>
 
 ls -l /dev/ttyUSB0 // 권한조회
+
+
+
+
+의료용
+
+1000/160000
+펄스당 0.00625mm 가는 셈
+
+8000 / 152000
+
+우한 : 62mm - block = 53mm(찐 우한으로부터)
+좌한 : 59.5mm - block = 50.5mm
+
+1분주당 약 0.006313289mm 가는 셈

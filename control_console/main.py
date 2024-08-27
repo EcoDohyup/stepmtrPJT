@@ -3,7 +3,7 @@ import time
 
 # Replace '/dev/ttyUSB0' with your serial port
 try:
-    ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
+    ser = serial.Serial('/dev/ttyUSB1', 115200, timeout=1)
 except serial.SerialException as e:
     print(f"Error opening serial port: {e}")
     exit()
@@ -17,9 +17,12 @@ def send_command(command):
     except serial.SerialException as e:
         print(f"Error communicating with serial port: {e}")
 
+initial_position = input("Enter the current motor position: ")
+send_command(initial_position)
+
 try:
     while True:
-        cmd = input("Enter command (1 : left, 2 : right, 0 : stop): ")
+        cmd = input("Enter command (a : left, d : right, s : stop, p : current position): ")
         send_command(cmd)
 except KeyboardInterrupt:
     print("Exiting...")
