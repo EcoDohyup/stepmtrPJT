@@ -67,3 +67,25 @@ https://docs.google.com/document/d/1bkvPQNkkFRb2QJgUPw2rLMsRN7aS1cx5Md6RTBFhhAI/
 
 파이썬으로 시리얼통신.
 
+
+
+### from Ubuntu
+Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics CH340 serial converter
+
+분주 : 800(1바퀴 돌리는데 800펄스 필요하다.)
+1펄스당 0.45도 돌린다. 
+
+
+
+#### Troubleshoot
+우분투 esp32 연결
+https://www.bordergate.co.uk/configuring-an-esp32-in-ubuntu-22-04/
+여기서 screen 명령까지 수행한다.
+
+Python 다 작성했는데, [Errno 16] Device or resource busy: '/dev/ttyUSB0' 뜬다?
+
+sudo lsof /dev/ttyUSB0
+
+sudo kill <PID>
+
+ls -l /dev/ttyUSB0 // 권한조회
