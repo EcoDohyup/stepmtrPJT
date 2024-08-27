@@ -6,9 +6,6 @@
       <div class="motor-control">
         <h2>모터 제어</h2>
         <p>상태: {{ status }}</p>
-        <p>속도: {{ speed }} (클릭하여 속도 조절)</p>
-        <button @click="changeSpeed(-1)">&#9650; 감속</button>
-        <button @click="changeSpeed(1)">&#9660; 가속</button>
         <button @click="stopMotor">&#9208; 모터 정지</button>
         <button @click="moveMotor('left')">&#9664; 좌로 이동</button>
         <button @click="moveMotor('right')">&#9654; 우로 이동</button>
@@ -27,33 +24,9 @@ export default {
     }
   },
   methods: {
-    async changeSpeed(amount) {
-      // Update the speed and send it to the backend
-      this.speed = Math.max(0, this.speed + amount); // Ensure speed is not negative
-      await this.sendSpeed();
-    },
-    async sendSpeed() {
-      try {
-        const response = await fetch(`http://192.168.0.94/motor/speed?value=${this.speed}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'text/plain'
-          }
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        this.status = `속도 세팅 : ${this.speed}`;
-        console.log(this.speed);
-      } catch (error) {
-        console.error('Error setting speed:', error);
-        this.status = `Error setting speed: ${error.message}`;
-      }
-    },
     async stopMotor() {
       try {
-        const response = await fetch('http://192.168.0.94/motor/stop', {
+        const response = await fetch('http://192.168.0.98/motor/stop', {
           method: 'GET',
           mode: 'cors',
           headers: {
@@ -72,7 +45,7 @@ export default {
     },
     async moveMotor(direction) {
       try {
-        const response = await fetch(`http://192.168.0.94/motor/${direction}`, {
+        const response = await fetch(`http://192.168.0.98/motor/${direction}`, {
           method: 'GET',
           mode: 'cors',
           headers: {
@@ -88,35 +61,6 @@ export default {
         this.status = `Error moving motor: ${error.message}`;
       }
     },
-    handleKeydown(event) {
-      switch (event.key) {
-        case 'ArrowUp':
-          this.changeSpeed(1);
-          break;
-        case 'ArrowDown':
-          this.changeSpeed(-1);
-          break;
-        case ' ':
-          this.stopMotor();
-          break;
-        case 'ArrowRight':
-          this.moveMotor('right');
-          break;
-        case 'ArrowLeft':
-          this.moveMotor('left');
-          break;
-        default:
-          break;
-      }
-    }
-  },
-  mounted() {
-    // Add keydown event listener when component is mounted
-    window.addEventListener('keydown', this.handleKeydown);
-  },
-  beforeUnmount() {
-    // Remove keydown event listener when component is destroyed
-    window.removeEventListener('keydown', this.handleKeydown);
   }
 }
 </script>
