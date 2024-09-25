@@ -12,15 +12,15 @@ except serial.SerialException as e:
 def send_command(command):
     try:
         ser.write((command + '\n').encode())
-        # Remove the short delay, as it might cause issues with reading the position
+
     except serial.SerialException as e:
         print(f"Error communicating with serial port: {e}")
 
-# Prompt for and send the initial position
-initial_position = input("Enter initial motor position: ")
+# 초기 위치값 입력
+initial_position = input("모터 현재 위치 입력 : ")
 send_command(initial_position)
 
-print("Enter command (a: left, d: right, s: stop, p: get position): ")
+print("명령 입력 (a: left, d: right, s: stop): ")
 
 try:
     while True:
@@ -31,8 +31,8 @@ try:
             send_command(cmd)
         
         
-        # Continuously read and print any available data from the serial port
-        if ser.in_waiting > 0:  # Check if there is data in the buffer
+        # 시리얼로 숫자 입력 받음, 1초 한번 전송받으므로 정확한 실시간 값이 아님에 주의. 버퍼에 올라오면 값 입력받는 방식
+        if ser.in_waiting > 0: 
             response = ser.readline().decode('utf-8', errors='ignore').strip()
             if response:
                 print(response)
