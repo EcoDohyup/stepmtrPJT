@@ -74,6 +74,8 @@ void loop() {
     }
   }
 
+// LOW면 센싱 한거, HIGH면 센싱 아닌거
+
   if (motorRunning) {
     digitalWrite(STEP_DIR_PIN, motorDirection); // 방향 조절
     digitalWrite(STEP_STP_PIN, HIGH); // 분주비 제어
