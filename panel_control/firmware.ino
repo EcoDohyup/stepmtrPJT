@@ -20,6 +20,7 @@ void setup() {
   pinMode(STEP_ENA_PIN, OUTPUT);
   pinMode(STEP_DIR_PIN, OUTPUT);
   pinMode(STEP_STP_PIN, OUTPUT);
+  
 
   // 모터 초기 무력화
   digitalWrite(STEP_ENA_PIN, HIGH);

@@ -20,8 +20,12 @@ void setup() {
   pinMode(LIMIT_RIGHT, INPUT);
   pinMode(LIMIT_LEFT, INPUT);
 
+  Serial.println("GPIO 초기화 완료");
+
   digitalWrite(STEP_ENA_PIN, HIGH);
   digitalWrite(STEP_DIR_PIN, motorDirection); // 기본 우향 세팅
+
+  Serial.println("모터 초기화 완료");
 
   
 }
