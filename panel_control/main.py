@@ -20,7 +20,7 @@ def send_command(command):
 initial_position = input("모터 현재 위치 입력 : ")
 send_command(initial_position)
 
-print("명령 입력 (a: left, d: right, s: stop): ")
+print("명령 입력 (a: panel Close, d: panel Open, s: stop, w: panel speed): ")
 
 try:
     while True:
@@ -30,12 +30,13 @@ try:
             cmd = sys.stdin.readline().strip()
             send_command(cmd)
         
-        
+        """
         # 시리얼로 숫자 입력 받음, 1초 한번 전송받으므로 정확한 실시간 값이 아님에 주의. 버퍼에 올라오면 값 입력받는 방식
         if ser.in_waiting > 0: 
             response = ser.readline().decode('utf-8', errors='ignore').strip()
             if response:
                 print(response)
+        """
                 
 except KeyboardInterrupt:
     print("Exiting...")
