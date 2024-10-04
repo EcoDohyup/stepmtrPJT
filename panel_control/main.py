@@ -17,6 +17,8 @@ def send_command(command):
         print(f"Error communicating with serial port: {e}")
 
 # 초기 위치값 입력
+print("initial position (500 or 159500)")
+send_command(initial_position)
 
 print("명령 입력 (a: panel Close, d: panel Open, s: stop, w: panel speed): ")
 
